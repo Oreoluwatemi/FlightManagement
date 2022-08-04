@@ -1,0 +1,13 @@
+package com.humber.flightmanagement.model;
+
+import lombok.Data;
+
+@Data
+public class Arrival {
+
+	private String airport;
+	private String timezone;
+	private String terminal;
+	private String gate;
+	private String scheduled;
+}
