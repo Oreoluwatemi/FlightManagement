@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/admin_layout}">
+
+<head>
+	<title>Spring Boot Thymeleaf + Spring Security</title>
+	<link type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body class="bod-back">
+	<div layout:fragment="content" class="container">
+
+		<h1>Save Airport</h1>
+		<form role="form" th:action="@{/admin/addairport}" th:method="post" th:object="${airport}">
+			<lable class="label-form">Airport Name</lable>
+			<input type="text" id="name" name="name" th:field="*{airport_name}" readonly /><br />
+
+			<lable class="label-form">Timezone</lable>
+			<input type="text" id="timezone" name="timezone" th:field="*{timezone}" readonly /><br />
+
+			<lable class="label-form">Country</lable>
+			<input type="text" id="country_name" name="country_name" th:field="*{country_name}" readonly /><br />
+
+			<input class="btn-submit" type="submit" value="Add">
+		</form>
+	</div>
+</body>
+
+</html>

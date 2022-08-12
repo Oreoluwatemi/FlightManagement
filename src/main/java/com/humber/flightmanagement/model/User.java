@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -25,10 +27,21 @@ public class User implements UserDetails {
 
 	@Id
 	private String id;
+
+	@NotBlank(message = "FirstName is required")
 	private String firstname;
+	
+	@NotBlank(message = "LastName is required")
 	private String lastname;
+	
+	@NotBlank(message = "Phone number is required")
 	private String phoneno;
+	
+	@NotBlank(message = "Email is required")
+	 @Email(message = "Please enter a valid e-mail address")
 	private String email;
+	
+	@NotBlank(message = "Password is required")
 	private String password;
 	
 

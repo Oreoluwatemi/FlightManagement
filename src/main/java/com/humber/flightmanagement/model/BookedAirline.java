@@ -16,12 +16,10 @@ public class BookedAirline {
 	public String id;
 	private String flight_date;
 	private String departure_airport;
-	private String departure_timezone;
 	private String departure_terminal;
 	private String departure_gate;
 	private String departure_scheduled;
 	private String arrival_airport;
-	private String arrival_timezone;
 	private String arrival_terminal;
 	private String arrival_gate;
 	private String arrival_scheduled;

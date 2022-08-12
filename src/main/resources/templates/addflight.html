@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/admin_layout}">
+
+<head>
+	<title>Spring Boot Thymeleaf + Spring Security</title>
+	<link type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body class="bod-back">
+	<div layout:fragment="content" class="container">
+		<h1>Add Flight</h1>
+
+		<form role="form" th:action="@{/admin/addflight}" th:method="post" th:object="${airline}">
+			<lable class="label-form">Flight Date</lable>
+			<input type="date" id="flight_date" name="flight_date" field="*{flight_date}" /><br />
+
+			<lable class="label-form">Departure Airport</lable>
+
+			<select class="form-control" id="dropDownList" name="departure_airport" field="*{departure_airport}">
+				<option value="0">select option</option>
+				<option th:each="airport : ${airports}" th:value="${airport.airport_name}"
+					th:text="${airport.airport_name}"></option>
+			</select><br />
+			<lable class="label-form">Departure Terminal</lable>
+			<input type="text" id="departure_terminal" name="departure_terminal" field="*{departure_terminal}" /><br />
+
+			<lable class="label-form">Departure Scheduled</lable>
+			<input type="datetime-local" id="departure_scheduled" name="departure_scheduled"
+				field="*{departure_scheduled}" /><br />
+
+			<lable>Departure Gate</lable>
+			<input type="text" id="departure_gate" name="departure_gate" field="*{departure_gate}" /><br />
+
+			<lable class="label-form">Arrival Airport</lable>
+			<select class="form-control" id="dropDownList" name="arrival_airport" field="*{arrival_airport}">
+				<option value="0">select option</option>
+				<option th:each="airport : ${airports}" th:value="${airport.airport_name}"
+					th:text="${airport.airport_name}"></option>
+			</select> <br />
+			<lable class="label-form">Arrival Terminal</lable>
+			<input type="text" id="arrival_terminal" name="arrival_terminal" field="*{arrival_terminal}" /><br />
+
+			<lable class="label-form">Arrival Scheduled</lable>
+			<input type="datetime-local" id="arrival_scheduled" name="arrival_scheduled"
+				field="*{arrival_scheduled}" /><br />
+
+			<lable class="label-form">Arrival Gate</lable>
+			<input type="text" id="arrival_gate" name="arrival_gate" field="*{arrival_gate}" /><br />
+
+			<lable class="label-form">Airline</lable>
+			<input type="text" id="airline" name="airline" field="*{airline}" /><br />
+
+			<lable class="label-form">Flight Number</lable>
+			<input type="text" id="flight_number" name="flight_number" field="*{flight_number}" /><br />
+
+			<lable class="label-form">Economy Capacity</lable>
+			<input type="text" id="economy_capacity" name="economy_capacity" field="*{economy_capacity}" /><br />
+
+			<lable class="label-form">Business Capacity</lable>
+			<input type="text" id="business_capacity" name="business_capacity" field="*{business_capacity}" /><br />
+
+			<lable class="label-form">Firstclass Capacity</lable>
+			<input type="text" id="firstclass_capacity" name="firstclass_capacity"
+				field="*{firstclass_capacity}" /><br />
+
+			<input class="btn-submit" type="submit" value="Add">
+		</form>
+	</div>
+</body>
+
+</html>

@@ -1,17 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
 <head>
-    <title>Spring Boot User Authentication</title>
+	<meta charset="UTF-8">
+	<title>LAWORE FLIGHT</title>
+	<link type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
-<body>
-<form role="form" th:action="@{/sign-in}" th:method="post">
-    <lable>Username</lable>
-    <input type="text" id="username" name="username">
 
-    <lable>Password</lable>
-    <input type="password" id="password" name="password">
+<body class="bod-back">
+	<div class="header">
+		<h1> LAWAORE FLIGHT</h1> <br /><br /><br /><br />
+		<h2>Login</h2><br />
+	</div>
+	<br />
 
-    <input type="submit">
-</form>
+	<form role="form" th:action="@{/sign-in}" th:method="post">
+		<div class="error" th:if="${param.error}"> Invalid username and password. </div>
+		<div class="error" th:if="${param.logout}"> You have been logged out. </div>
+		<lable class="label-form">Username</lable><br />
+		<input type="text" id="username" name="username"><br /><br />
+
+		<lable class="label-form">Password</lable><br />
+		<input type="password" id="password" name="password"><br /><br />
+
+		<input class="btn-submit" type="submit">
+	</form>
 </body>
+
 </html>

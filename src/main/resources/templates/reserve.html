@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>LAWORE FLIGHT</title>
+	<link type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body class="bod-back">
+	<div class="header">
+		<h1> LAWAORE FLIGHT</h1> <br /><br /><br /><br />
+		<h2>Book Flight</h2><br />
+	</div>
+	<br />
+	<div class="booking-detail">
+
+		<div class="bottom">
+			<h2>Departure</h2>
+			<h3>Airport</h3>
+			<p th:text="${flight.departure_airport}"> </p>
+			<h3>Time</h3>
+			<p th:text="${flight.departure_scheduled}"> </p>
+			<h3>Terminal</h3>
+			<p th:text="${flight.departure_terminal}"> </p>
+			<h3>Gate</h3>
+			<p th:text="${flight.departure_gate}"></p>
+		</div>
+		<div class="bottom">
+			<h2>Arrival</h2>
+			<h3>Airport</h3>
+			<p th:text="${flight.arrival_airport}"> </p>
+			<h3>Time</h3>
+			<p th:text="${flight.arrival_scheduled}"> </p>
+			<h3>Terminal</h3>
+			<p th:text="${flight.arrival_terminal}"></p>
+			<h3>Gate</h3>
+			<p th:text="${flight.arrival_gate}"></p>
+
+		</div>
+		<div class="top">
+			<h2>Airline</h2>
+			<p th:text="${flight.airline}"></p>
+			<h2>Flight date</h2>
+			<p th:text="${flight.flight_date}"></p>
+			<h2>Flight Number</h2>
+			<p th:text="${flight.flight_number}"></p>
+		</div>
+	</div>
+
+
+
+	<form role="form" th:action="@{/bookflight}" th:method="post" th:object="${bookings}">
+		<lable>Select Seat</lable>
+		<select class="form-control" id="dropDownList" name="seat" field="*{seat}">
+			<option value="0">select option</option>
+			<option th:value="Economy" th:text="Economy"></option>
+			<option th:value="Business " th:text="Business"></option>
+			<option th:value="First" th:text="First"></option>
+		</select>
+		<br /><br />
+		<lable>Number of Seats</lable>
+		<input type="number" id="no_of_seats" name="no_of_seats" field="*{no_of_seats}" />
+		<br /><br />
+
+
+		<input type="hidden" id="booked_airline" name="booked_airline" th:value="${flight.id}"
+			field="*{booked_airline}" />
+
+
+		<input type="hidden" id="user_id" name="user_id" th:value="${user.id}" field="*{user_id}" />
+
+		<input type="submit">
+	</form>
+
+</body>
+
+</html>

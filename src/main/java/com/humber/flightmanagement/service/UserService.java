@@ -30,20 +30,22 @@ public class UserService implements UserDetailsService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
+
 	@Autowired
 	private TokenService tokenService;
-	
+
 	@Autowired
 	private SendEmailService sendEmailService;
-	
+
+	// register user
 	public void registerUser(User user) {
-		
+
+		// encrypt password
 		String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
-		
+
 		User newUser = new User();
 		String userString = user.getEmail();
 		newUser.setId(UUID.randomUUID().toString());
@@ -56,7 +58,8 @@ public class UserService implements UserDetailsService {
 		newUser.setLocked(false);
 		newUser.setUserrole("USER");
 		userRepository.save(newUser);
-		
+
+		// create token
 		Token token = new Token();
 		String tbString = UUID.randomUUID().toString();
 		token.setId(UUID.randomUUID().toString());
@@ -64,17 +67,17 @@ public class UserService implements UserDetailsService {
 		token.setCreatedat(LocalDate.now());
 		token.setToken(tbString);
 		tokenService.saveToken(token);
-		
-		System.out.println(userString);
-		
-		System.out.println(tbString);
+
+		// send confirmation link
 		sendEMail(userString, tbString);
 	}
-	
-public void registerUserAdmin(User user) {
-		
+
+	// register admin
+	public void registerUserAdmin(User user) {
+
+		// encrypt password
 		String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
-		
+
 		User newUser = new User();
 		String userString = user.getEmail();
 		newUser.setId(UUID.randomUUID().toString());
@@ -87,7 +90,8 @@ public void registerUserAdmin(User user) {
 		newUser.setLocked(false);
 		newUser.setUserrole("ADMIN");
 		userRepository.save(newUser);
-		
+
+		// create token
 		Token token = new Token();
 		String tbString = UUID.randomUUID().toString();
 		token.setId(UUID.randomUUID().toString());
@@ -95,66 +99,63 @@ public void registerUserAdmin(User user) {
 		token.setCreatedat(LocalDate.now());
 		token.setToken(tbString);
 		tokenService.saveToken(token);
-		
+
 		System.out.println(userString);
-		
+
 		System.out.println(tbString);
 		sendEMail(userString, tbString);
 	}
-	
+
+//verify email
 	public void confirmNewUser(Token token) {
 
 		final User user = token.getUser();
 
+		// enable user
 		user.setEnabled(true);
 
 		userRepository.save(user);
 
+		// delete token
 		tokenService.deleteToken(token.getId());
 
 	}
-	
+
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
 		final SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority("USER");
 		return Collections.singletonList(simpleGrantedAuthority);
 	}
 
-
+	// get current user signed in
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		
+
 		Optional<User> user = userRepository.findByEmail(email);
-		return user.orElseThrow(() -> new UsernameNotFoundException(MessageFormat.format("User with email {0} cannot be found.", email)));
+		return user.orElseThrow(() -> new UsernameNotFoundException(
+				MessageFormat.format("User with email {0} cannot be found.", email)));
 	}
-	
+
 	void sendEMail(String userMail, String token) {
 
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
 		System.out.print("Sent email started");
 		mailMessage.setTo(userMail);
-		mailMessage.setSubject("Mail Confirmation Link!");
+		mailMessage.setSubject("Confirm your Account");
 		mailMessage.setFrom("temmitayolawal35@gmail.com");
 		mailMessage.setText(
-				"Thank you for registering. Please click on the below link to activate your account." + "http://localhost:8080/sign-up/confirm?token="
-						+ token);
+				"Welcome to Lawore Flights, thank you for registering. Please click on the below link to activate account: "
+						+ "http://localhost:8080/sign-up/confirm?token=" + token);
 
 		System.out.print("Sent email process");
 		sendEmailService.sendEmail(mailMessage);
 		System.out.print("Sent email ended");
 	}
-	
-//	public void autoLogin(String username, String password) {
-//		System.out.println(username);
-//        UserDetails userDetails = loadUserByUsername(username);
-//        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
-//
-//        authenticationManager.authenticate(usernamePasswordAuthenticationToken);
-//
-//        if (usernamePasswordAuthenticationToken.isAuthenticated()) {
-//            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-//            //logger.debug(String.format("Auto login %s successfully!", username));
-//        }
-//    }
+
+	// get a user with email passed
+	public Optional<User> getUser(String email) {
+		return userRepository.findByEmail(email);
+	}
+
 }

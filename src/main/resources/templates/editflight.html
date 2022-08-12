@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/admin_layout}">
+
+<head>
+	<title>Spring Boot Thymeleaf + Spring Security</title>
+	<link type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body class="bod-back">
+	<div layout:fragment="content" class="container">
+
+		<form role="form" th:action="@{/admin/editflight}" th:method="post" th:object="${flight}">
+			<lable class="label-form">Flight Date</lable>
+			<input type="date" id="flight_date" name="flight_date" th:field="*{flight_date}" /><br /><br />
+
+			<lable class="label-form">Departure Airport</lable>
+			<input type="text" id="departure_airport" name="departure_airport" th:field="*{departure_airport}"
+				readonly><br /><br />
+
+			<lable class="label-form">Departure Terminal</lable>
+			<input type="text" id="departure_terminal" name="departure_terminal"
+				th:field="*{departure_terminal}" /><br /><br />
+
+			<lable class="label-form">Departure Scheduled</lable>
+			<input type="datetime-local" id="departure_scheduled" name="departure_scheduled"
+				th:field="*{departure_scheduled}" /><br /><br />
+
+			<lable class="label-form">Departure Gate</lable>
+			<input type="text" id="departure_gate" name="departure_gate" th:field="*{departure_gate}" /><br /><br />
+
+			<lable class="label-form">Arrival Airport</lable>
+			<input type="text" id="arrival_airport" name="arrival_airport" th:field="*{arrival_airport}"
+				readonly><br /><br />
+
+			<lable>Arrival Terminal</lable>
+			<input type="text" id="arrival_terminal" name="arrival_terminal"
+				th:field="*{arrival_terminal}" /><br /><br />
+
+			<lable class="label-form">Arrival Scheduled</lable>
+			<input type="datetime-local" id="arrival_scheduled" name="arrival_scheduled"
+				th:field="*{arrival_scheduled}" /><br /><br />
+
+			<lable class="label-form">Arrival Gate</lable>
+			<input type="text" id="arrival_gate" name="arrival_gate" th:field="*{arrival_gate}" /><br /><br />
+
+			<lable class="label-form">Airline</lable>
+			<input type="text" id="airline" name="airline" th:field="*{airline}" readonly /><br /><br />
+
+			<lable class="label-form">Flight Number</lable>
+			<input type="text" id="flight_number" name="flight_number" th:field="*{flight_number}"
+				readonly /><br /><br />
+
+			<lable class="label-form">Economy Capacity</lable>
+			<input type="text" id="economy_capacity" name="economy_capacity"
+				th:field="*{economy_capacity}" /><br /><br />
+
+			<lable class="label-form">Business Capacity</lable>
+			<input type="text" id="business_capacity" name="business_capacity" th:field="*{business_capacity}" /><br />
+
+			<lable class="label-form">Firstclass Capacity</lable>
+			<input type="text" id="firstclass_capacity" name="firstclass_capacity"
+				th:field="*{firstclass_capacity}" /><br />
+
+			<input class="btn-submit" type="submit" value="Edit">
+		</form>
+
+
+	</div>
+</body>
+
+</html>

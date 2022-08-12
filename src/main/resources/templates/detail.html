@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}">
+
+<head>
+	<title>Spring Boot Thymeleaf + Spring Security</title>
+	<link type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body class="bod-back">
+	<div layout:fragment="content" class="container">
+
+		<h1>Your Bookings</h1>
+		<div class="booking-detail">
+			<div class="top">
+				<h2>Airline</h2>
+				<p th:text="${flight.booked_airline.airline}"></p>
+				<h2>Flight date</h2>
+				<p th:text="${flight.booked_airline.flight_date}"></p>
+				<h2>Flight Number</h2>
+				<p th:text="${flight.booked_airline.flight_number}"></p>
+			</div>
+			<div class="top">
+				<h2>Seat</h2>
+				<p th:text="${flight.seat}"></p>
+				<h2>Number of Seat</h2>
+				<p th:text="${flight.no_of_seats}"></p>
+				<br />
+				<br /><br />
+
+
+			</div>
+			<div class="middle">
+				<p>****************</p>
+			</div>
+			<div class="bottom">
+				<h2>Departure</h2>
+				<h3>Airport</h3>
+				<p th:text="${flight.booked_airline.departure_airport}"> </p>
+				<h3>Time</h3>
+				<p th:text="${flight.booked_airline.departure_scheduled}"> </p>
+				<h3>Terminal</h3>
+				<p th:text="${flight.booked_airline.departure_terminal}"> </p>
+				<h3>Gate</h3>
+				<p th:text="${flight.booked_airline.departure_gate}"></p>
+			</div>
+			<div class="bottom">
+				<h2>Arrival</h2>
+				<h3>Airport</h3>
+				<p th:text="${flight.booked_airline.arrival_airport}"> </p>
+				<h3>Time</h3>
+				<p th:text="${flight.booked_airline.arrival_scheduled}"> </p>
+				<h3>Terminal</h3>
+				<p th:text="${flight.booked_airline.arrival_terminal}"></p>
+				<h3>Gate</h3>
+				<p th:text="${flight.booked_airline.arrival_gate}"></p>
+
+			</div> <a class="btn" th:href="@{/deletebooking/{id}(id=${flight.bookingid})}">Cancel Booking</a>
+
+		</div>
+
+
+	</div>
+</body>
+
+</html>

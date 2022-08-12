@@ -1,0 +1,24 @@
+
+<header th:fragment="adminheader" xmlns:th="http://www.w3.org/1999/xhtml">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+             
+                <a class="navbar-brand" href="/home">Lawore Flight</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Admin Home</a></li>
+                </ul>
+<form name="logoutForm" th:hidden="true" method="post" th:action="@{/logout}">
+    <input type="submit" value="Logout" />
+</form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="javascript: logoutForm.submit();">Logout <span class="sr-only">(current)</span></a></li>
+                    <li><a class="active" href="/airports">View Airports</a></li>
+                    <li><a class="active" href="/flights">Flights</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

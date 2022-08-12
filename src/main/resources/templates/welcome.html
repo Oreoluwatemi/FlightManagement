@@ -1,12 +1,17 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}">
+
 <head>
-    <title>Spring Boot User Authentication</title>
+	<title>Spring Boot Thymeleaf + Spring Security</title>
 </head>
-<body>
 
-<p>successful login</p>
-	<p th:text="${name} " />
+<body class="bod-back">
+	<div layout:fragment="content" class="container">
 
+		<div class="jumbotron">
+			<h1 th:text="Welcome + ' ' + ${name} " />
+		</div>
+	</div>
 </body>
+
 </html>

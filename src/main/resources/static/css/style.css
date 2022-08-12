@@ -1,0 +1,125 @@
+.bod-back {
+	background-color:cadetblue;
+}
+
+form {
+	margin: auto;
+	width: 60%;
+	border: 1px solid white;
+	padding: 15px;
+}
+
+input {
+	width: 80%;
+	height: 35px;
+	margin-left: 10%;
+	margin-right: 10px;
+}
+
+.btn-submit{
+	width: 50% !important;
+	height: 40px !important;
+	background-color: grey !important;
+	border-radius: 5px;
+	margin-left:25%;
+	margin-right: 25%;
+	
+}
+
+.header{
+	text-align: center;
+}
+
+
+.label-form{
+	margin-left: 10%;
+}
+
+.table{
+	border: 1px;
+	
+}
+
+.user-bookings{
+	margin: auto;
+	background-color: grey;
+	width: 80%;
+	border-radius: 15px;
+	font-size: 18px;
+	height: 420px;
+	margin-bottom: 20px;
+	padding-left: 20px;
+}
+.user-bookings div {
+	float: left;
+	width: 30%;
+	margin-left: 20px;
+}
+.user-bookings a{
+	text-decoration: none;
+	padding: 10px;
+	width: 100px;
+	height: 50px;
+	border: 1px solid black;
+	background-color: rgb(231, 255, 248);
+	margin-top: 125px;
+}
+
+.booking-detail{
+	background-color: grey;
+	width: 80%;
+	border-radius: 15px;
+	font-size: 20px;
+	height: 800px;
+	margin: auto;
+}
+
+.top{
+	float: left;
+	width: 46%;
+	margin-left: 20px;
+	
+}
+.middle{
+	float: none;
+}
+.bottom{
+	float: left;
+	width: 46%;
+	margin-left: 20px;
+	
+}
+.btn{
+	text-decoration: none;
+	padding: 10px;
+	width: 150px;
+	height: 50px;
+	border: 1px solid black;
+	background-color: rgb(231, 255, 248);
+	margin-top: 125px;
+	font-size: 15;
+}
+
+.admin-btn{
+	text-decoration: none;
+	padding: 10px;
+	width: 150px;
+	height: 50px;
+	border: 1px solid black;
+	background-color: rgb(231, 255, 248);
+	font-size: 15;
+}
+
+.airport-table{
+	border: 1px solid black !important;
+	 
+}
+.airport-table tr{
+	margin-top: 6px !important;
+	margin-bottom: 6px !important;
+}
+
+.error{
+	color: red;
+	margin-left: 10%;
+}

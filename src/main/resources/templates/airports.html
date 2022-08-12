@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/admin_layout}">
+
+<head>
+	<title>Spring Boot Thymeleaf + Spring Security</title>
+	<link type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body class="bod-back">
+	<div layout:fragment="content" class="container">
+
+
+		<table class="airport-table">
+			<thead>
+				<tr>
+					<th> Name </th>
+					<th> Country </th>
+					<th> TimeZone </th>
+				</tr>
+			</thead><br />
+			<tbody>
+				<tr th:if="${airports.empty}">
+					<td colspan="2"> No Books Available </td>
+				</tr>
+				<tr th:each="airport : ${airports}">
+					<td><span th:text="${airport.airport_name}"> Name </span></td>
+					<td><span th:text="${airport.country_name}"> Country </span></td>
+					<td><span th:text="${airport.timezone}"> TimeZone </span></td>
+					<td><a th:href="@{/addairport/{id}(id=${airport.airport_name})}">Add to Database</a></td>
+				</tr><br />
+			</tbody>
+		</table>
+
+
+	</div>
+</body>
+
+</html>

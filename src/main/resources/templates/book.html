@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}">
+
+<head>
+	<title>Spring Boot Thymeleaf + Spring Security</title>
+	<link type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body class="bod-back">
+	<div layout:fragment="content" class="container">
+
+		<h1>Search Flight</h1>
+
+		<form role="form" th:action="@{/booking}" th:method="post" th:object="${search}">
+			<lable class="label-form">Date</lable>
+			<input type="date" id="flight_date" name="flight_date" field="*{flight_date}" />
+
+			<lable class="label-form">Departure</lable>
+			<select class="form-control" id="dropDownList" name="departure_airport" field="*{departure_airport}">
+				<option value="0">select option</option>
+				<option th:each="airport : ${airports}" th:value="${airport.airport_name}"
+					th:text="${airport.airport_name}"></option>
+			</select>
+
+			<lable class="label-form">Arrival Airport</lable>
+			<select class="form-control" id="dropDownList" name="arrival_airport" field="*{arrival_airport}">
+				<option value="0">select option</option>
+				<option th:each="airport : ${airports}" th:value="${airport.airport_name}"
+					th:text="${airport.airport_name}"></option>
+			</select> <br />
+
+			<input class="btn-submit" type="submit">
+		</form>
+
+		<h1>Please choose yor depature flight</h1>
+		<table border="1px">
+			<thead>
+				<tr>
+					<th> Airline </th>
+					<th> Flight Number </th>
+					<th> Flight Date </th>
+					<th> Departure Airport </th>
+					<th> Departure Time </th>
+					<th> Departure Terminal </th>
+					<th> Departure Gate </th>
+					<th> Arrival Airport </th>
+					<th> Arrival Time </th>
+					<th> Arrival Terminal </th>
+					<th> Arrival Gate </th>
+					<th> Option </th>
+
+				</tr>
+			</thead>
+			<tbody>
+
+				<tr th:each="flight : ${flights}">
+					<td><span th:text="${flight.airline}"> Airline </span></td>
+					<td><span th:text="${flight.flight_number}"> Flight Number </span></td>
+					<td><span th:text="${flight.flight_date}"> Flight Date </span></td>
+					<td><span th:text="${flight.departure_airport}"> Departure Airport </span></td>
+					<td><span th:text="${flight.departure_scheduled}"> Departure Time </span></td>
+					<td><span th:text="${flight.departure_terminal}"> Departure Terminal </span></td>
+					<td><span th:text="${flight.departure_gate}"> Departure Gate </span></td>
+					<td><span th:text="${flight.arrival_airport}"> Arrival Airport </span></td>
+					<td><span th:text="${flight.arrival_scheduled}"> Arrival Time </span></td>
+					<td><span th:text="${flight.arrival_terminal}"> Arrival Terminal</span></td>
+					<td><span th:text="${flight.arrival_gate}"> Arrival Gate</span></td>
+					<td><a class="btn" th:href="@{/viewflight/{id}(id=${flight.flight_number})}">Continue</a></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+</body>
+
+</html>

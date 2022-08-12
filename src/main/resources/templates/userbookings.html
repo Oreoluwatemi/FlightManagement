@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}">
+
+<head>
+	<title>Spring Boot Thymeleaf + Spring Security</title>
+	<link type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body class="bod-back">
+	<div layout:fragment="content" class="container">
+
+		<h1>Your Bookings</h1>
+		<div th:each="flight : ${bookings}">
+			<div class="user-bookings">
+				<h2>Airline</h2>
+				<p th:text="${flight.booked_airline.airline}"></p>
+				<h2>Flight date</h2>
+				<p th:text="${flight.booked_airline.flight_date}"></p>
+				<h2>Seat</h2>
+				<p th:text="${flight.seat}"></p>
+				<h2>Number 0f Seat</h2>
+				<p th:text="${flight.no_of_seats}"></p>
+				<a class=".admin-btn" th:href="@{/userbooking/{id}(id=${flight.bookingid})}">View</a>
+			</div>
+		</div>
+
+	</div>
+</body>
+
+</html>

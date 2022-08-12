@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/admin_layout}">
+
+<head>
+	<title>Spring Boot Thymeleaf + Spring Security</title>
+	<link type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body class="bod-back">
+	<div layout:fragment="content" class="container">
+
+		<a class="btn" href="/addflight">Add flight</a>
+		<table border="1px">
+			<thead>
+				<tr style="padding: 3px">
+					<th> Airline </th>
+					<th> Flight Number </th>
+					<th> Flight Date </th>
+					<th> Departure Airport </th>
+					<th> Departure Time </th>
+					<th> Departure Terminal </th>
+					<th> Departure Gate </th>
+					<th> Arrival Airport </th>
+					<th> Arrival Time </th>
+					<th> Arrival Terminal </th>
+					<th> Arrival Gate </th>
+					<th> Economy Capacity </th>
+					<th> Business Capacity </th>
+					<th> Firstclass Capacity </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${flights.empty}">
+					<td colspan="2"> No Flights Available </td>
+				</tr>
+				<tr th:each="flight : ${flights}">
+					<td><span th:text="${flight.airline}"> Airline </span></td>
+					<td><span th:text="${flight.flight_number}"> Flight Number </span></td>
+					<td><span th:text="${flight.flight_date}"> Flight Date </span></td>
+					<td><span th:text="${flight.departure_airport}"> Departure Airport </span></td>
+					<td><span th:text="${flight.departure_scheduled}"> Departure Time </span></td>
+					<td><span th:text="${flight.departure_terminal}"> Departure Terminal </span></td>
+					<td><span th:text="${flight.departure_gate}"> Departure Gate </span></td>
+					<td><span th:text="${flight.arrival_airport}"> Arrival Airport </span></td>
+					<td><span th:text="${flight.arrival_scheduled}"> Arrival Time </span></td>
+					<td><span th:text="${flight.arrival_terminal}"> Arrival Terminal</span></td>
+					<td><span th:text="${flight.arrival_gate}"> Arrival Gate</span></td>
+					<td><span th:text="${flight.economy_capacity}"> Arrival Gate</span></td>
+					<td><span th:text="${flight.business_capacity}"> Arrival Gate</span></td>
+					<td><span th:text="${flight.firstclass_capacity}"> Arrival Gate</span></td>
+					<td><a th:href="@{/editflight/{id}(id=${flight.flight_number})}">Edit</a></td>
+				</tr>
+			</tbody>
+		</table>
+
+
+	</div>
+</body>
+
+</html>
